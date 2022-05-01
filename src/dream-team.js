@@ -13,9 +13,35 @@ const { NotImplementedError } = require('../extensions/index.js');
  * createDreamTeam(['Olivia', 1111, 'Lily', 'Oscar', true, null]) => 'LOO'
  *
  */
-function createDreamTeam(/* members */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+
+ function isLetter(c) {
+  return c.toLowerCase() != c.toUpperCase();
+}
+
+function sortstr(str) {
+  return str.split('').sort().join('');
+}
+
+function createDreamTeam(array) {
+  let kol=0;
+  let team='';
+  if (!Array.isArray(array)) return false;
+  for (let i of array){
+    if (typeof(i)=='string'){
+      i = i.replace(/\s/g, '');
+      var first = i.charAt(0);
+      if (isLetter(first))
+      {
+        kol++;
+        team+=first.toUpperCase();
+      }
+    }
+  }
+  if ((kol==0) || (array.length==0)) {return false;}
+  else {
+    let dreamteam = sortstr(team);
+    return dreamteam;
+  }
 }
 
 module.exports = {
